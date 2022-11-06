@@ -62,6 +62,12 @@ def get_cards(n: int, deck: List[Card]) -> List[Card]:
     Returns:
         List[Card]: a list of cards
     """
+    if n <= 0:
+        raise ValueError('n must be > 0!')
+
+    if n > len(deck):
+        raise ValueError('n must be <= len(deck)!')
+
     cards = deck[:n]
     deck[:] = deck[n:]
     return cards
