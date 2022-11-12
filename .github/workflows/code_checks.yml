@@ -3,7 +3,7 @@ name: Check codestyle and run tests
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  code_checks:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,5 +36,5 @@ jobs:
       - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
-          name: test_report.html
+          name: test_report
           path: test_report.html
