@@ -8,8 +8,8 @@ def get_requested_tests_by_pattern(request, pattern):
     return [item.name for item in request.session.items if f'{pattern}[' in item.name]
 
 
-@pytest.mark.dependency
-@pytest.mark.parametrize(['n', 'deck', 'expected'], [
+@pytest.mark.dependency()
+@pytest.mark.parametrize(('n', 'deck', 'expected'), [
     pytest.param(
         1,
         [('2', 'C'), ('A', 'H')],
@@ -31,7 +31,7 @@ def test_get_cards(n, deck, expected):
     assert deck == reference_deck
 
 
-@pytest.mark.parametrize(['n', 'deck', 'expected'], [
+@pytest.mark.parametrize(('n', 'deck', 'expected'), [
     pytest.param(
         0,
         [('2', 'C'), ('A', 'H')],

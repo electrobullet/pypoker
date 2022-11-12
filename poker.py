@@ -70,7 +70,7 @@ def get_cards(n: int, deck: List[Card]) -> List[Card]:
 
     cards = deck[:n]
     deck[:] = deck[n:]
-    return cards
+    return cards  # noqa: R504
 
 
 def sort_hand(hand: List[Card]) -> List[Card]:
@@ -99,7 +99,7 @@ def determine_hand(hand: List[Card]) -> str:
     sorted_hand = sort_hand(hand)[-5:]
 
     ranks = [card[0] for card in sorted_hand]
-    suit_set = set([card[1] for card in sorted_hand])
+    suit_set = {card[1] for card in sorted_hand}
 
     r1, r2, r3, r4, r5 = ranks
     p1, p2, p3, p4, p5 = [RANK_POWER[rank] for rank in ranks]

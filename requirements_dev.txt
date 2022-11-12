@@ -1,0 +1,21 @@
+autopep8
+flake8
+flake8-annotations-complexity
+# flake8-bandit
+flake8-bugbear
+flake8_builtins
+flake8-class-attributes-order
+flake8_commas
+flake8-comprehensions
+flake8-functions
+flake8-isort
+flake8-pytest-style
+flake8-quotes
+flake8-return
+# flake8-requirements
+flake8-string-format
+mypy
+pep8-naming
+pytest
+pytest-dependency
+pytest-html
