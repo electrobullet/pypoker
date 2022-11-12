@@ -56,7 +56,7 @@ def get_cards(n: int, deck: List[Card]) -> List[Card]:
     Gets n cards from a deck
 
     Args:
-        n (int): a number of cards
+        n (int): a number of cards (0 < n <= len(deck))
         deck (List[Card]): a deck of cards
 
     Returns:
@@ -73,17 +73,17 @@ def get_cards(n: int, deck: List[Card]) -> List[Card]:
     return cards  # noqa: R504
 
 
-def sort_hand(hand: List[Card]) -> List[Card]:
+def sort_cards(cards: List[Card]) -> List[Card]:
     """
-    Sorts cards by rank in a hand
+    Sorts cards by rank
 
     Args:
-        hand (List[Card]): a list of cards
+        cards (List[Card]): a list of cards
 
     Returns:
-        List[Card]: a sorted hand
+        List[Card]: a sorted list of cards
     """
-    return sorted(hand, key=lambda card: RANK_POWER[card[0]])
+    return sorted(cards, key=lambda card: RANK_POWER[card[0]])
 
 
 def determine_hand(hand: List[Card]) -> str:
@@ -96,7 +96,7 @@ def determine_hand(hand: List[Card]) -> str:
     Returns:
         str: name of a hand
     """
-    sorted_hand = sort_hand(hand)[-5:]
+    sorted_hand = sort_cards(hand)[-5:]
 
     ranks = [card[0] for card in sorted_hand]
     suit_set = {card[1] for card in sorted_hand}
@@ -136,7 +136,7 @@ def determine_hand(hand: List[Card]) -> str:
         return 'high card'
 
 
-def print_hand(hand: List[Card], prefix: str, postfix: str = '\n') -> None:
+def print_hand(hand: List[Card], prefix: str) -> None:
     """
     Prints a list of cards in following format:
         '{prefix}{sorted hand} - {name of a hand}{postfix}'
@@ -144,8 +144,8 @@ def print_hand(hand: List[Card], prefix: str, postfix: str = '\n') -> None:
     Args:
         hand (List[Card]): a list of cards
     """
-    sorted_hand = sort_hand(hand)
-    print(f'{prefix}{sorted_hand} - {determine_hand(sorted_hand)}{postfix}')
+    sorted_hand = sort_cards(hand)[-5:]
+    print(f'{prefix}{sorted_hand} - {determine_hand(sorted_hand)}\n')
 
 
 def replace_card(hand: List[Card], card: Card, new_card: Card) -> None:
@@ -182,8 +182,8 @@ def compare_hands(hand_1: List[Card], hand_2: List[Card]) -> int:
     elif hand_1_power < hand_2_power:
         return 1
 
-    hand_1_ranks = [card[0] for card in sort_hand(hand_1)[-5:]]
-    hand_2_ranks = [card[0] for card in sort_hand(hand_2)[-5:]]
+    hand_1_ranks = [card[0] for card in sort_cards(hand_1)[-5:]]
+    hand_2_ranks = [card[0] for card in sort_cards(hand_2)[-5:]]
     hand_1_sum = sum([RANK_POWER[hand_1_ranks[i]] * pow(10, i) for i in range(5)])
     hand_2_sum = sum([RANK_POWER[hand_2_ranks[i]] * pow(10, i) for i in range(5)])
 
@@ -204,7 +204,7 @@ def main():
     user_hand = get_cards(5, deck)
     print_hand(user_hand, 'User hand: ')
 
-    for card in sort_hand(user_hand):
+    for card in sort_cards(user_hand):
 
         ans = ''
         while ans not in ['y', 'n']:
