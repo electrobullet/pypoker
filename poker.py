@@ -194,36 +194,3 @@ def compare_hands(hand_1: List[Card], hand_2: List[Card]) -> int:
         return 1
 
     return 2
-
-
-def main():
-    deck = get_deck()
-
-    computer_hand = get_cards(5, deck)
-
-    user_hand = get_cards(5, deck)
-    print_hand(user_hand, 'User hand: ')
-
-    for card in sort_cards(user_hand):
-
-        ans = ''
-        while ans not in ['y', 'n']:
-            ans = input(f'Replace {card}? [y / n] ')
-
-        if ans == 'y':
-            replace_card(user_hand, card, *get_cards(1, deck))
-
-    print_hand(computer_hand, '\nComputer hand: ')
-    print_hand(user_hand, 'User hand: ')
-
-    match compare_hands(user_hand, computer_hand):
-        case 0:
-            print('User wins!')
-        case 1:
-            print('Computer wins!')
-        case 2:
-            print('Draw!')
-
-
-if __name__ == '__main__':
-    main()

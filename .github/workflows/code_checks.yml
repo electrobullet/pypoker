@@ -31,10 +31,12 @@ jobs:
 
       - name: Running tests
         run: |
-          python -m pytest --self-contained-html --html=test_report.html
+          python -m pytest -vv --cov --self-contained-html --html=test_report.html --cov-report=html
 
       - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
-          name: test_report
-          path: test_report.html
+          name: test_reports
+          path: |
+            test_report.html
+            htmlcov

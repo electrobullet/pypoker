@@ -242,13 +242,25 @@ def test_replace_card(hand, card, new_card, expected):
         [('10', 'C'), ('J', 'C'), ('Q', 'C'), ('K', 'C'), ('A', 'C')],
         [('10', 'C'), ('10', 'D'), ('10', 'H'), ('K', 'H'), ('K', 'S')],
         0,
-        id='hand_1 > hand_2',
+        id='hand_1_power > hand_2_power',
     ),
     pytest.param(
         [('10', 'C'), ('10', 'D'), ('10', 'H'), ('K', 'H'), ('K', 'S')],
         [('10', 'C'), ('J', 'C'), ('Q', 'C'), ('K', 'C'), ('A', 'C')],
         1,
-        id='hand_1 < hand_2',
+        id='hand_1_power < hand_2_power',
+    ),
+    pytest.param(
+        [('10', 'C'), ('J', 'H'), ('Q', 'C'), ('K', 'S'), ('A', 'C')],
+        [('9', 'C'), ('10', 'D'), ('J', 'H'), ('Q', 'H'), ('K', 'S')],
+        0,
+        id='hand_1_sum > hand_2_sum',
+    ),
+    pytest.param(
+        [('9', 'C'), ('10', 'D'), ('J', 'H'), ('Q', 'H'), ('K', 'S')],
+        [('10', 'C'), ('J', 'H'), ('Q', 'C'), ('K', 'S'), ('A', 'C')],
+        1,
+        id='hand_1_sum < hand_2_sum',
     ),
     pytest.param(
         [('10', 'C'), ('J', 'C'), ('Q', 'C'), ('K', 'C'), ('A', 'C')],
